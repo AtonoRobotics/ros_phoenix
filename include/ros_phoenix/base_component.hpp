@@ -47,10 +47,10 @@ namespace ros_phoenix
             this->declare_parameter<double>("max_current", 30);
             this->declare_parameter<double>("sensor_multiplier", 1.0);
 
-            this->declare_parameter<double>("P", 0);
+            this->declare_parameter<double>("P", 0.000);
             this->declare_parameter<double>("I", 0);
-            this->declare_parameter<double>("D", 0);
-            this->declare_parameter<double>("F", 0);
+            this->declare_parameter<double>("D", 0.0008);
+            this->declare_parameter<double>("F", 0.03529);
 
             this->period_ms_ = this->get_parameter("period_ms").as_int();
             this->watchdog_ms_ = this->get_parameter("watchdog_ms").as_int();
