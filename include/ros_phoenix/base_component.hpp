@@ -41,17 +41,17 @@ namespace ros_phoenix
             this->declare_parameter<int>("edges_per_rot", 4096); // Encoder edges per rotation (4096 is for built-in encoder)
             this->declare_parameter<bool>("invert", false);
             this->declare_parameter<bool>("invert_sensor", false);
-            this->declare_parameter<bool>("brake_mode", true);
+            this->declare_parameter<bool>("brake_mode", false);
             this->declare_parameter<bool>("analog_input", false);
             this->declare_parameter<double>("max_voltage", 12);
             this->declare_parameter<double>("max_current", 30);
             this->declare_parameter<double>("sensor_multiplier", 1.0);
 
-            this->declare_parameter<double>("P", 0);
+          this->declare_parameter<double>("P", 0.000);
             this->declare_parameter<double>("I", 0);
-            this->declare_parameter<double>("D", 0);
-            this->declare_parameter<double>("F", 0);
-
+            this->declare_parameter<double>("D", 0.0008);
+            this->declare_parameter<double>("F", 0.03529);
+            
             this->period_ms_ = this->get_parameter("period_ms").as_int();
             this->watchdog_ms_ = this->get_parameter("watchdog_ms").as_int();
             this->follow_id_ = this->get_parameter("follow_id").as_int();
