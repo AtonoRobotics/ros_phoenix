@@ -46,8 +46,9 @@ namespace ros_phoenix
             this->declare_parameter<double>("max_voltage", 12);
             this->declare_parameter<double>("max_current", 30);
             this->declare_parameter<double>("sensor_multiplier", 1.0);
+            this->declare_parameter<int>("ramp_time", 2);
 
-          this->declare_parameter<double>("P", 0.000);
+            this->declare_parameter<double>("P", 0.000);
             this->declare_parameter<double>("I", 0);
             this->declare_parameter<double>("D", 0.0008);
             this->declare_parameter<double>("F", 0.03529);
@@ -169,7 +170,8 @@ namespace ros_phoenix
                 config.voltageCompSaturation = this->get_parameter("max_voltage").as_double();
                 config.pulseWidthPeriod_EdgesPerRot = this->get_parameter("edges_per_rot").as_int();
                 this->configure_current_limit(config);
-
+                config.configClosedloopRamp = this->get_parameter("ramp_time").as_int();
+                
                 ErrorCode error = this->controller_->ConfigAllSettings(config, 50); // Takes up to 50ms
                 if (error != ErrorCode::OK)
                 {
